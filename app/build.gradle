@@ -118,4 +118,6 @@ dependencies {
     // WorkManager dependency
     def work_version = "1.0.1"
     implementation "android.arch.work:work-runtime-ktx:$work_version"
+
+    implementation 'com.github.cdflynn:turn-layout-manager:v1.3.1'
 }
