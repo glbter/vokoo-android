@@ -15,7 +15,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:onClick="@{() -> clickListener.onCLick(user)}">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/userAvatarImage"
@@ -28,7 +29,7 @@
             app:shapeAppearanceOverlay="@style/roundedImageView"
             app:strokeColor="@color/black"
             app:strokeWidth="0.5dp"
-            app:srcCompat="@drawable/girl1"
+            app:srcCompat="@{user.imageId}"
             tools:srcCompat="@tools:sample/avatars" />
 
         <com.google.android.material.textview.MaterialTextView
