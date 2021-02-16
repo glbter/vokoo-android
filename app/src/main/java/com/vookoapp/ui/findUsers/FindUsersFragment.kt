@@ -1,8 +1,6 @@
 package com.vookoapp.ui.findUsers
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 import cdflynn.android.library.turn.TurnLayoutManager
 import com.vookoapp.R
@@ -29,7 +25,9 @@ class FindUsersFragment : Fragment() {
         val binding: FragmentFindUsersBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_find_users, container, false)
 
-        val clickListener = UserInfoListener { Toast.makeText(context, "Clicked!", Toast.LENGTH_LONG) }
+        val clickListener = UserInfoListener {
+            Toast.makeText(context, "Clicked!", Toast.LENGTH_SHORT).show()
+        }
         val adapter = UserInfoAdapter(clickListener)
         binding.userCarousel.adapter = adapter
 
@@ -37,26 +35,24 @@ class FindUsersFragment : Fragment() {
         val viewModel = ViewModelProvider(this, viewModelFactory)
                 .get(FindUsersViewModel::class.java)
 
-        viewModel.users.observe(viewLifecycleOwner,  {
-            it?.let {
-                //adapter.data = it
-                adapter.submitList(it) //update recycler with new data< using ListAdapter
-            }
-        })
+        viewModel.loadUsers()
 
-        val turnLayout = TurnLayoutManager(
+
+
+        val turnLayoutManager = TurnLayoutManager(
                 context,
                 TurnLayoutManager.Gravity.START,
                 TurnLayoutManager.Orientation.VERTICAL,
-                15,
-                8,
+                2000,
+                750,
                 false
         )
 
         val linearLayoutManager = LinearLayoutManager(context)
 
-        binding.userCarousel.layoutManager = linearLayoutManager
-
+        binding.userCarousel.layoutManager = turnLayoutManager
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this.viewLifecycleOwner
 
         return binding.root
     }
