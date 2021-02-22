@@ -1,34 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/userAvatarImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/roundedImageView"
-        app:strokeColor="@color/black"
-        app:strokeWidth="0.5dp"
-        app:srcCompat="@drawable/loading_img"
-        tools:srcCompat="@tools:sample/avatars" />
+    <data>
+        <variable
+            name="user"
+            type="com.vookoapp.domain.UserInfo" />
+        <variable
+            name="clickListener"
+            type="com.vookoapp.ui.findUsers.UserInfoListener"/>
+    </data>
 
-    <com.google.android.material.textview.MaterialTextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userAvatarImage"
-        tools:text="username" />
+        android:onClick="@{() -> clickListener.onCLick(user)}">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/userAvatarImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:strokeColor="@color/black"
+            app:strokeWidth="0.5dp"
+            app:srcCompat="@drawable/girl1"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userAvatarImage"
+            android:text="@{user.shortInfo}"
+            tools:text="username" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
+</layout>

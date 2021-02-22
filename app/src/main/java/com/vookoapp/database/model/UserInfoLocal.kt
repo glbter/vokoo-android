@@ -2,6 +2,7 @@ package com.vookoapp.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.vookoapp.R
 import com.vookoapp.domain.UserInfo
 
 @Entity
@@ -16,7 +17,8 @@ fun List<UserInfoLocal>.asDomainModel(): List<UserInfo> {
         UserInfo(
             id = it.id,
             name = it.name,
-            age = it.age
+            age = it.age,
+            imageId = R.drawable.girl1
         )
     }
 }
