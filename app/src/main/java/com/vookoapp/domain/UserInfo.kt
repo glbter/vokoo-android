@@ -10,4 +10,7 @@ data class UserInfo(
 ) {
     val shortInfo: String
         get() = "$name, $id"
+
+    val bio: String
+        get() = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 }
